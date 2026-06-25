@@ -47,6 +47,16 @@ static op_entry_t *match_operator(const char *s, size_t *length)
     return NULL;
 }
 
+const char *token_type_to_lexeme(token_type_t type)
+{
+    for (size_t i = 0; i < sizeof(OPERATORS)/sizeof(OPERATORS[0]); i++) {
+        if (OPERATORS[i].type == type) {
+            return OPERATORS[i].lexeme;
+        }
+    }
+    return "?";
+}
+
 /**
  * @brief appends a char to a char buffer, dynamically resizes as needed
  * @param buf a pre-allocated char buffer

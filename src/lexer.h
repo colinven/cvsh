@@ -18,5 +18,6 @@ typedef struct {
 
 token_t *lex(const char *line, size_t *count);
 void free_tokens(token_t *tokens, size_t count);
+const char *token_type_to_lexeme(token_type_t type);
 
 #endif
