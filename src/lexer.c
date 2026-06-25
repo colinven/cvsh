@@ -71,7 +71,7 @@ int char_buf_add(char **buf, char c, size_t *position, size_t *capacity)
         (*capacity) *= 2;
         char *tmp = realloc(*buf, *capacity);
         if (!tmp) {
-            fprintf(stderr, "lexer: reallocation error. (char buffer)\n");
+            fprintf(stderr, "cvsh: reallocation error. (lexer)\n");
             return -1;
         }
         *buf = tmp;
@@ -101,7 +101,7 @@ int tok_buf_add(token_t **tok_buf, token_t *token, size_t *position, size_t *cap
         (*capacity) *= 2;
         token_t *tmp = realloc(*tok_buf, *capacity * sizeof(token_t));
         if (!tmp) {
-            fprintf(stderr, "lexer: reallocation error. (token buffer)\n");
+            fprintf(stderr, "cvsh: reallocation error. (lexer)\n");
             return -1;
         }
         *tok_buf = tmp;
@@ -150,7 +150,7 @@ token_t *lex(const char *line, size_t *count)
     size_t tok_buf_cap = DEFAULT_BUFSIZE; // capacity of token buffer
     token_t *tokens = malloc(DEFAULT_BUFSIZE * sizeof(token_t)); // token buffer to append to
     if (!tokens) {
-        fprintf(stderr, "lexer: allocation error. (token buffer)\n");
+        fprintf(stderr, "cvsh: reallocation error. (lexer)\n");
         return NULL;
     }
     token_t tok;
@@ -160,7 +160,7 @@ token_t *lex(const char *line, size_t *count)
     size_t buf_len = 0, buf_cap = DEFAULT_BUFSIZE; // current position and capacity of char buffer
     char *buf = malloc(buf_cap); // temp buffer to accumulate chars into
     if (!buf) {
-        fprintf(stderr, "lexer: allocation error. (char buffer)\n");
+        fprintf(stderr, "cvsh: reallocation error. (lexer)\n");
         return NULL;
     }
 
