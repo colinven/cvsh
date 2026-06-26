@@ -20,7 +20,7 @@ int argv_buf_add(char ***buf, char *ptr, int* argc, size_t *capacity)
         (*capacity) *= 2;
         char **tmp = realloc(*buf, *capacity * sizeof(char *));
         if (!tmp) {
-            fprintf(stderr, "(parser): reallocation error\n");
+            fprintf(stderr, "cvsh: reallocation error (parser)\n");
             return -1;
         }
         *buf = tmp;
