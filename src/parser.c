@@ -102,21 +102,14 @@ pipeline_t *parse(token_t *tokens, size_t count)
             fprintf(stderr, "cvsh: syntax error near unexpected token '%s'\n",  // (e.g. "> out.txt cat")
                 token_type_to_lexeme(cur_token->type));                         //
             goto fail;                                                          // this check catches if first arg is not TOKEN_WORD
-        }                                                                       //
+        }                                                                       // (also catches empty commands (e.g. cat in.txt | |"))
 
         switch(cur_token->type) {
             case TOKEN_WORD:    // append word token to argv
-
                 if (argv_buf_add(&cur_cmd->argv, cur_token->value, &cur_cmd->argc, &argv_cap) != 0) goto fail;
                 break;
 
             case TOKEN_PIPE:    // signals transition between commands. 
-
-                if (cur_cmd->argc == 0) {                                   // catch empty commands
-                    fprintf(stderr, "cvsh: syntax error: empty command\n"); // (e.g. cat in.txt | |")
-                    goto fail;                                              //                  ^ ^
-                }                                                           //            empty (double pipe)
-
                 cur_cmd->argv[cur_cmd->argc] = NULL;    // Finalize current command, advance cmd_idx pointer
                 cur_cmd = &commands[++cmd_idx];         //
 
