@@ -2,7 +2,7 @@
 
 A Unix shell written from scratch in C which tokenizes input, builds a command pipeline, and drives the Unix process API directly.
 
-This project grew out of reading [*Operating Systems: Three Easy Pieces*](https://ostep.org/) (OSTEP). This is a learning project to solidify my understanding of process management, file redirection, and C programming overall.
+This project grew out of reading [*Operating Systems: Three Easy Pieces*](https://pages.cs.wisc.edu/~remzi/OSTEP/) (OSTEP). This is a learning project to solidify my understanding of process management, file redirection, and C programming overall.
 
 ---
 
